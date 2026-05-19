@@ -1,26 +1,134 @@
+/* Tailwind v4: importa el framework con @import */
 @import "tailwindcss";
 
+/* Variante dark: activa estilos cuando .dark está presente */
+@custom-variant dark (&:is(.dark *));
+
+/* Variables modo claro: colores base del tema light */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ced6e0;
+  --foreground: #0c0f15;
+  --primary: #004266;
+  --secondary: #381378;
+  --card: #e2e8f0;
+  --card-border: #94a3b8;
+  --muted: #1e293b;
+  --code-green: #14532d;
+  --grid-color: rgba(2, 6, 23, 0.07);
+  --blob-primary: rgba(0, 66, 102, 0.12);
+  --blob-secondary: rgba(56, 19, 120, 0.12);
 }
 
+/* Variables modo oscuro: sobrescribe colores para .dark */
+.dark {
+  --background: #050505;
+  --foreground: #f0f6fc;
+  --primary: #00f2ff;
+  --secondary: #bc00ff;
+  --card: #0d1117;
+  --card-border: #30363d;
+  --muted: #b0b8c4;
+  --code-green: #a3e635;
+  --grid-color: rgba(0, 242, 255, 0.12);
+  --blob-primary: rgba(0, 242, 255, 0.12);
+  --blob-secondary: rgba(188, 0, 255, 0.12);
+}
+
+/* Registro en @theme: expone las variables como colores y fuentes de Tailwind */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --color-code-green: var(--code-green);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Body: fondo, texto, fuente base y transición suave entre temas */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar oculta: elimina scrollbars visibles en Webkit, Firefox e IE */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Selection: color de selección personalizado con neón cyan */
+::selection {
+  background: rgba(0, 242, 255, 0.2);
+  color: #00f2ff;
+}
+
+/* Fade-in-up: usado en Hero para reemplazar animaciones de Framer Motion */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+.animate-fade-in-up-1 { animation: fade-in-up 0.8s ease-out 0.3s forwards; opacity: 0; }
+.animate-fade-in-up-2 { animation: fade-in-up 0.8s ease-out 0.5s forwards; opacity: 0; }
+.animate-fade-in-up-3 { animation: fade-in-up 0.8s ease-out 0.7s forwards; opacity: 0; }
+.animate-fade-in-up-4 { animation: fade-in-up 0.8s ease-out 0.9s forwards; opacity: 0; }
+.animate-fade-in-up-5 { animation: fade-in-up 0.8s ease-out 1.1s forwards; opacity: 0; }
+.animate-fade-in-up-6 { animation: fade-in-up 0.8s ease-out 1.5s forwards; opacity: 0; }
+
+/* Fade-in: simple aparición para el PRESS START */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fade-in { animation: fade-in 1s ease-out forwards; }
+
+/* Glow pulse: animación de sombra para el avatar */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--primary); }
+  50% { box-shadow: 0 0 40px var(--secondary); }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Equalizer: animación de barras para el widget de música en Extra */
+@keyframes equalizer {
+  0%, 100% { height: 4px; }
+  25% { height: 20px; }
+  50% { height: 12px; }
+  75% { height: 24px; }
+}
+
+/* Clase utilitaria: aplica la animación equalizer a las barras */
+.animate-equalizer {
+  animation: equalizer 0.6s ease-in-out infinite;
+}
+
+/* Clase utilitaria: oculta scrollbar horizontal sin perder funcionalidad de scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

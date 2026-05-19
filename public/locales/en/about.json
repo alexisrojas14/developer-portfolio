@@ -1,0 +1,24 @@
+{
+  "section_title": "About Me",
+  "subtitle": "Bento Grid",
+  "bio_card": {
+    "title": "// bio.json",
+    "content": "Full Stack Developer with a strong backend focus, experienced in developing and deploying web applications and corporate environments. I have worked with Python, Java, React, Docker, and GCP, contributing to automation, cloud migration, and artificial intelligence integration projects."
+  },
+  "philosophy_card": {
+    "title": "// philosophy.txt",
+    "content": "My philosophy is simple: write clean code today, so tomorrow's developer (myself included) doesn't curse my name."
+  },
+  "location_card": {
+    "title": "location.maps",
+    "content": "Bogotá D.C, Colombia 🇨🇴"
+  },
+  "interests_card": {
+    "title": "hobbies.sh",
+    "items": ["Music", "Gym", "Soccer", "Sports", "Development"]
+  },
+  "quote_card": {
+    "title": "// quote.txt",
+    "content": "\u201cIt is not the strongest of the species that survives, nor the most intelligent, but the one most responsive to change.\u201d \u2014 Charles Darwin"
+  }
+}

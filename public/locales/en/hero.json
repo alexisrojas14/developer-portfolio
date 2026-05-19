@@ -1,0 +1,10 @@
+{
+  "greeting": ">_ Hello world",
+  "name_prefix": "I am",
+  "name": "Alexis Rojas",
+  "role": "Full Stack Developer | Python, Java & DevOps",
+  "status": "Available to work",
+  "description": "Full Stack Developer with a strong backend focus, experienced in developing and deploying web applications and corporate environments. I have worked with Python, Java, React, Docker, and GCP, contributing to automation, cloud migration, and artificial intelligence integration projects.",
+  "press_start": "PRESS START",
+  "cv_label": "RESUME"
+}
