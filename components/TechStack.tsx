@@ -10,7 +10,8 @@ import {
 } from "react-icons/fa";
 import {
   SiSpringboot, SiFlask, SiTailwindcss, SiJavascript,
-  SiNginx, SiPostgresql, SiMysql
+  SiNginx, SiPostgresql, SiMysql, SiAngular, SiNestjs,
+  SiMongodb, SiTypescript, SiNextdotjs, SiFramer
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { SiGooglecloud, SiJirasoftware } from "react-icons/si";
@@ -26,7 +27,6 @@ interface TechItem {
   name_en: string;
   category: Exclude<TabId, "all">;
   icon: ReactNode;
-  level: number;
 }
 
 // TABS: define las pestañas con iconos y nombres tipo archivo (config, .py, .tsx, .sh)
@@ -37,29 +37,38 @@ const TABS: { id: TabId; label: Record<"es" | "en", string>; icon: ReactNode }[]
   { id: "devops", label: { es: "devops.sh", en: "devops.sh" }, icon: <Terminal className="w-4 h-4" /> },
 ];
 
-// TECH_ITEMS: lista completa de tecnologías con categoría y nivel de habilidad (0-100)
+// TECH_ITEMS: lista completa de tecnologías organizadas por categoría
 // NOTA: los datos están hardcodeados; podrían moverse a un archivo JSON/API para escalar
 const TECH_ITEMS: TechItem[] = [
-  { id: "python", name_es: "Python", name_en: "Python", category: "backend", icon: <FaPython />, level: 90 },
-  { id: "java", name_es: "Java", name_en: "Java", category: "backend", icon: <FaJava />, level: 85 },
-  { id: "springboot", name_es: "Spring Boot", name_en: "Spring Boot", category: "backend", icon: <SiSpringboot />, level: 80 },
-  { id: "flask", name_es: "Flask", name_en: "Flask", category: "backend", icon: <SiFlask />, level: 75 },
-  { id: "react", name_es: "React", name_en: "React", category: "frontend", icon: <FaReact />, level: 85 },
-  { id: "tailwind", name_es: "Tailwind CSS", name_en: "Tailwind CSS", category: "frontend", icon: <SiTailwindcss />, level: 80 },
-  { id: "html", name_es: "HTML", name_en: "HTML", category: "frontend", icon: <FaHtml5 />, level: 90 },
-  { id: "javascript", name_es: "JavaScript", name_en: "JavaScript", category: "frontend", icon: <SiJavascript />, level: 75 },
-  { id: "docker", name_es: "Docker", name_en: "Docker", category: "devops", icon: <FaDocker />, level: 80 },
-  { id: "ubuntu", name_es: "Ubuntu", name_en: "Ubuntu", category: "devops", icon: <FaLinux />, level: 75 },
-  { id: "nginx", name_es: "Nginx", name_en: "Nginx", category: "devops", icon: <SiNginx />, level: 70 },
-  { id: "postgresql", name_es: "PostgreSQL", name_en: "PostgreSQL", category: "devops", icon: <SiPostgresql />, level: 75 },
-  { id: "mysql", name_es: "MySQL", name_en: "MySQL", category: "devops", icon: <SiMysql />, level: 70 },
-  { id: "git", name_es: "Git", name_en: "Git", category: "devops", icon: <FaGitAlt />, level: 85 },
-  { id: "gcp", name_es: "GCP", name_en: "GCP", category: "devops", icon: <FaGoogle />, level: 65 },
+  // Backend
+  { id: "python", name_es: "Python", name_en: "Python", category: "backend", icon: <FaPython /> },
+  { id: "java", name_es: "Java", name_en: "Java", category: "backend", icon: <FaJava /> },
+  { id: "springboot", name_es: "Spring Boot", name_en: "Spring Boot", category: "backend", icon: <SiSpringboot /> },
+  { id: "flask", name_es: "Flask", name_en: "Flask", category: "backend", icon: <SiFlask /> },
+  { id: "nestjs", name_es: "NestJS", name_en: "NestJS", category: "backend", icon: <SiNestjs /> },
+  { id: "llm", name_es: "LLMs (Gemini, Locales)", name_en: "LLMs (Gemini, Local)", category: "backend", icon: <GiBrain /> },
+  // Frontend
+  { id: "react", name_es: "React", name_en: "React", category: "frontend", icon: <FaReact /> },
+  { id: "nextjs", name_es: "Next.js", name_en: "Next.js", category: "frontend", icon: <SiNextdotjs /> },
+  { id: "angular", name_es: "Angular", name_en: "Angular", category: "frontend", icon: <SiAngular /> },
+  { id: "typescript", name_es: "TypeScript", name_en: "TypeScript", category: "frontend", icon: <SiTypescript /> },
+  { id: "tailwind", name_es: "Tailwind CSS", name_en: "Tailwind CSS", category: "frontend", icon: <SiTailwindcss /> },
+  { id: "html", name_es: "HTML", name_en: "HTML", category: "frontend", icon: <FaHtml5 /> },
+  { id: "javascript", name_es: "JavaScript", name_en: "JavaScript", category: "frontend", icon: <SiJavascript /> },
+  { id: "framer", name_es: "Framer Motion", name_en: "Framer Motion", category: "frontend", icon: <SiFramer /> },
+  // DevOps
+  { id: "docker", name_es: "Docker", name_en: "Docker", category: "devops", icon: <FaDocker /> },
+  { id: "ubuntu", name_es: "Ubuntu", name_en: "Ubuntu", category: "devops", icon: <FaLinux /> },
+  { id: "nginx", name_es: "Nginx", name_en: "Nginx", category: "devops", icon: <SiNginx /> },
+  { id: "mongodb", name_es: "MongoDB", name_en: "MongoDB", category: "devops", icon: <SiMongodb /> },
+  { id: "postgresql", name_es: "PostgreSQL", name_en: "PostgreSQL", category: "devops", icon: <SiPostgresql /> },
+  { id: "mysql", name_es: "MySQL", name_en: "MySQL", category: "devops", icon: <SiMysql /> },
+  { id: "git", name_es: "Git", name_en: "Git", category: "devops", icon: <FaGitAlt /> },
+  { id: "gcp", name_es: "GCP", name_en: "GCP", category: "devops", icon: <FaGoogle /> },
   // TODO: Qdrant usa VscVscode como fallback; debería tener su propio icono
-  { id: "qdrant", name_es: "Qdrant", name_en: "Qdrant", category: "devops", icon: <VscVscode />, level: 60 },
-  { id: "llm", name_es: "LLMs (Gemini, Locales)", name_en: "LLMs (Gemini, Local)", category: "backend", icon: <GiBrain />, level: 70 },
-  { id: "workspace", name_es: "Google Workspace", name_en: "Google Workspace", category: "devops", icon: <FaGoogle />, level: 65 },
-  { id: "jira", name_es: "Jira", name_en: "Jira", category: "devops", icon: <SiJirasoftware />, level: 60 },
+  { id: "qdrant", name_es: "Qdrant", name_en: "Qdrant", category: "devops", icon: <VscVscode /> },
+  { id: "workspace", name_es: "Google Workspace", name_en: "Google Workspace", category: "devops", icon: <FaGoogle /> },
+  { id: "jira", name_es: "Jira", name_en: "Jira", category: "devops", icon: <SiJirasoftware /> },
 ];
 
 // SECTION_CONTENT: textos de título según idioma
@@ -72,7 +81,7 @@ interface TechStackProps {
   lang: "es" | "en";
 }
 
-// TechStack: sección con pestañas de filtro y grid de tecnologías con barra de progreso animada
+// TechStack: sección con pestañas de filtro y grid de tecnologías
 export default function TechStack({ lang }: TechStackProps) {
   // scrollTo: helper para navegación suave entre secciones
   const scrollTo = (id: string) => {
@@ -145,16 +154,7 @@ export default function TechStack({ lang }: TechStackProps) {
                 <span className="text-sm font-mono text-foreground text-center">
                   {lang === "es" ? tech.name_es : tech.name_en}
                 </span>
-                {/* Barra de progreso animada que se llena al entrar en viewport */}
-                <div className="w-full h-1.5 bg-card-border/30 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${tech.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                    className="h-full bg-secondary rounded-full"
-                  />
-                </div>
+
               </motion.div>
             ))}
           </AnimatePresence>
